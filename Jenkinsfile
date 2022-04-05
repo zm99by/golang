@@ -10,6 +10,7 @@ pipeline {
         stage('Compile') {
             steps {
                 sh 'go build'
+            }
         }
     }
 }

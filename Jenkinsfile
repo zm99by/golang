@@ -7,12 +7,12 @@ pipeline {
         GO111MODULE = 'on'
     }
     stages {
-        stage('Init') {
+        stage("Init") {
             steps {
                 sh 'go mod init main'
             }
         }
-        stage('Compile') {
+        stage("Compile") {
             steps {
                 sh 'go build'
             }

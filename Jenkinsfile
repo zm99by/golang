@@ -10,7 +10,7 @@ pipeline {
     environment {
         GO111MODULE = 'on'
     }
-    
+
     stages {
         stage('Build') {
             steps {
@@ -28,7 +28,7 @@ pipeline {
         }
         stage('Compile') {
             steps {
-                sh 'go build'
+                sh 'go build main.go'
             }
         }
 

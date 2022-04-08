@@ -1,21 +1,22 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"net/http"
+	"log"
+)
+
+func sayhello(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "Привет!")
+}
 
 func main() {
-    var w string
-    fmt.Scanln(&w)
-    results := []string{"w", "l", "w", "d", "w", "l", "l", "l", "d", "d", "w", "l", "w", "d"}
-    slice := append(results, w)
-   // var s []string = results[0:]
-    res := 0
-    for _, a := range slice {
-      if a == "w" {
-    res += 3   
-      } else if a == "d"{
-    res += 1
-      }
-    }
-    fmt.Println(res)
+	http.HandleFunc("/", sayhello) // Устанавливаем роутер
+	err := http.ListenAndServe(":8080", nil) // устанавливаем порт веб-сервера
 
+	// Если хотите использовать https, то вместо ListenAndServe используйте ListenAndServeTLS
+	// err := http.ListenAndServeTLS(":8080", "cert.pem", "key.pem", nil)
+	if err != nil {
+		log.Fatal("ListenAndServe: ", err)
+	}
 }

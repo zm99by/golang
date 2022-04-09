@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
-	"net/http"
 	"log"
+	"net/http"
 )
 
 func sayhello(w http.ResponseWriter, r *http.Request) {
@@ -11,7 +11,7 @@ func sayhello(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	http.HandleFunc("/", sayhello) // Устанавливаем роутер
+	http.HandleFunc("/", sayhello)           // Устанавливаем роутер
 	err := http.ListenAndServe(":8080", nil) // устанавливаем порт веб-сервера
 
 	// Если хотите использовать https, то вместо ListenAndServe используйте ListenAndServeTLS

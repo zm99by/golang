@@ -4,7 +4,10 @@ on:
   push:
     branches:
       - main
-
+before:
+  hooks:
+  - go mod tidy
+  
 jobs:
   releases-matrix:
     name: Release Go Binary

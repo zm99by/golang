@@ -3,11 +3,7 @@ name: Release Test binaries
 on:
   push:
     branches:
-      - main
-before:
-  hooks:
-  - go mod tidy
-  
+      - main  
 jobs:
   releases-matrix:
     name: Release Go Binary

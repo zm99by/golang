@@ -1,24 +1,19 @@
-name: Release Test binaries
-
-on:
-  push:
-    branches:
-      - main  
+name: Build and test Go
+on: [push, pull_request]
 jobs:
-  releases-matrix:
-    name: Release Go Binary
+  build:
+    name: Build
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        # build and publish in parallel: linux/amd64
-        goos: [linux]
-        goarch: [amd64]
     steps:
-      - uses: actions/checkout@v2
-      - uses: wangyoucao577/go-release-action@v1.16
+      - name: Set up Go 1.13
+        uses: actions/setup-go@v1
         with:
-          github_token: ${{ secrets.TOKEN }}
-          goos: ${{ matrix.goos }}
-          goarch: ${{ matrix.goarch }}
-          project_path: "."
-          binary_name: "test"
+          go-version: 1.13
+
+      - name: Check out source code
+        uses: actions/checkout@v1
+
+      - name: Build
+				env:
+					GOPROXY: "https://proxy.golang.org"
+        run: go build .

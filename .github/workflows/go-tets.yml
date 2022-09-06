@@ -15,3 +15,6 @@ jobs:
 
       - name: Build
         run: go build .
+        
+      - name: ls
+        run: ls -la
